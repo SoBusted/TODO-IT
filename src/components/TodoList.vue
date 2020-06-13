@@ -1,6 +1,6 @@
 <template lang="pug">
     section
-        ul
+        transition-group(name="list", tag="ul")
             li.shadow(v-for="todoItem, index in propsdata", :key="todoItem")
                 i.checkBtn.fas.fa-check(aria-hidden="true")
                 | {{ todoItem }}
@@ -45,5 +45,12 @@ export default {
     .removeBtn {
         margin-left: auto;
         color: #de4343;
+    }
+    .list-enter-active, .list-leave-active {
+        transition: all 1s;
+    }
+    .list-enter, .list-leave-to {
+        opacity: 0;
+        transform: translateY(30px);
     }
 </style>
