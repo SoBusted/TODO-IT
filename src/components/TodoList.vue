@@ -1,6 +1,6 @@
 <template lang="pug">
     section
-        transition-group(name="list", tag="ul")
+        transition-group(name="list", tag="ul", appear)
             li.shadow(v-for="todoItem, index in propsdata", :key="todoItem")
                 i.checkBtn.fas.fa-check(aria-hidden="true")
                 | {{ todoItem }}
