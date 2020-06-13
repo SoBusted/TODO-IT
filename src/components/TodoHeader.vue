@@ -1,5 +1,6 @@
-<template>
-    <div>header</div>
+<template lang="pug">
+    header
+        h1 TODO it!
 </template>
 
 <script>
