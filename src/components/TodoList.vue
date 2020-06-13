@@ -1,7 +1,7 @@
 <template lang="pug">
     section
         ul
-            li.shadow(v-for="todoItem, index in todoItems", :key="todoItem")
+            li.shadow(v-for="todoItem, index in propsdata", :key="todoItem")
                 i.checkBtn.fas.fa-check(aria-hidden="true")
                 | {{ todoItem }}
                 span.removeBtn(type="button", @click="removeTodo(todoItem, index)")
@@ -10,19 +10,11 @@
 
 <script>
 export default {
-    data() {
-        return {
-            todoItems: []
-        }
-    },
+    props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index) {
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1);
+            this.$emit('removeTodo', todoItem, index);
         }
-    },
-    created() {
-        this.todoItems = Object.keys(localStorage).filter(item => item !== 'loglevel:webpack-dev-server');
     }
 }
 </script>

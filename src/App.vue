@@ -1,9 +1,9 @@
-<template>
-    <div id="app">
-        <TodoHeader></TodoHeader>
-        <TodoInput></TodoInput>
-        <TodoList></TodoList>
-        <TodoFooter></TodoFooter>
+<template lang="pug">
+    #app
+        TodoHeader
+        TodoInput(@addTodo="addTodo")
+        TodoList(:propsdata="todoItems" @removeTodo="removeTodo")
+        TodoFooter(@removeAll="clearAll")
     </div>
 </template>
 
@@ -14,6 +14,28 @@ import TodoList from './components/TodoList';
 import TodoFooter from './components/TodoFooter';
 
 export default {
+    data() {
+        return {
+            todoItems: []
+        }
+    },
+    created() {
+        this.todoItems = Object.keys(localStorage).filter(item => item !== 'loglevel:webpack-dev-server');
+    },
+    methods: {
+        addTodo(item) {
+            localStorage.setItem(item, item);
+            this.todoItems.push(item);
+        },
+        removeTodo(item, index) {
+            localStorage.removeItem(item);
+            this.todoItems.splice(index, 1);
+        },
+        clearAll() {
+            localStorage.clear();
+            this.todoItems = [];
+        }
+    },
     components: {
         'TodoHeader': TodoHeader,
         'TodoInput': TodoInput,
