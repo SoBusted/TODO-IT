@@ -1,10 +1,19 @@
 <template lang="pug">
-    div list
+    section
+        ul
+            li(v-for="todoItem in todoItems") {{ todoItem }}
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            todoItems: []
+        }
+    },
+    created() {
+        this.todoItems = Object.keys(localStorage);
+    }
 }
 </script>
 
