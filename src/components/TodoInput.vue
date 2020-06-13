@@ -1,6 +1,6 @@
 <template lang="pug">
     .inputBox.shadow
-        input(v-model="newTodoItem", placeholder="Type what you have to do", @keyup.enter="addTodo")
+        input(v-model="newTodoItem", placeholder="Type what you have to do", @keyup.enter="addTodo", autofocus)
         span.addContainer(@click="addTodo")
             i.addBtn.fas.fa-plus(aria-hidden="true")
 </template>
