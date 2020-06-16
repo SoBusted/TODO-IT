@@ -2,7 +2,7 @@
     #app
         TodoHeader
         TodoInput(@addTodo="addTodo")
-        TodoList(:propsdata="todoItems" @removeTodo="removeTodo")
+        TodoList(@removeTodo="removeTodo")
         TodoFooter(@removeAll="clearAll")
     </div>
 </template>
@@ -16,24 +16,21 @@ import TodoFooter from './components/TodoFooter';
 export default {
     data() {
         return {
-            todoItems: []
+            
         }
     },
     created() {
-        this.todoItems = Object.keys(localStorage).filter(item => item !== 'loglevel:webpack-dev-server');
+        this.$store.commit('showTodo');
     },
     methods: {
         addTodo(item) {
-            localStorage.setItem(item, item);
-            this.todoItems.push(item);
+            this.$store.commit('addTodo', item);
         },
         removeTodo(item, index) {
-            localStorage.removeItem(item);
-            this.todoItems.splice(index, 1);
+            this.$store.commit('removeTodo', { item, index });
         },
         clearAll() {
-            localStorage.clear();
-            this.todoItems = [];
+            this.$store.commit('clearAll');
         }
     },
     components: {

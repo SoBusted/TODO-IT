@@ -1,7 +1,7 @@
 <template lang="pug">
     section
         transition-group(name="list", tag="ul", appear)
-            li.shadow(v-for="todoItem, index in propsdata", :key="todoItem")
+            li.shadow(v-for="todoItem, index in $store.state.todoItems", :key="todoItem")
                 i.checkBtn.fas.fa-check(aria-hidden="true")
                 | {{ todoItem }}
                 span.removeBtn(type="button", @click="removeTodo(todoItem, index)")
@@ -10,7 +10,6 @@
 
 <script>
 export default {
-    props: ['propsdata'],
     methods: {
         removeTodo(todoItem, index) {
             this.$emit('removeTodo', todoItem, index);
