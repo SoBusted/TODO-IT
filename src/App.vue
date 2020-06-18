@@ -4,7 +4,6 @@
         TodoInput(@addTodo="addTodo")
         TodoList(@removeTodo="removeTodo")
         TodoFooter(@removeAll="clearAll")
-    </div>
 </template>
 
 <script>
