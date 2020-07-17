@@ -1,4 +1,4 @@
-# vue-todo
+# TODO-IT
 
 > To do list based on vue.js
 
